@@ -105,6 +105,7 @@ let weatherWind = document.getElementById("weatherWind");
 let weatherTemperature = document.getElementById("weatherTemperature");
 let errorCard = document.getElementById("errorCard");
 let errorMessage = document.getElementById("errorMessage");
+let weatherIcon = document.getElementById("weatherIcon");
 
 let toggleUnitBtn = document.getElementById("toggleUnitBtn");
 let searchBtn = document.getElementById("searchButton");
@@ -113,6 +114,12 @@ let searchBtn = document.getElementById("searchButton");
 searchBtn.addEventListener("click", fetchWeather);
 toggleUnitBtn.addEventListener("click", changeCelciusToFahrenheit)
 
+countryInput.addEventListener("keydown", function(event) {
+  if (event.key === "Enter") {
+    fetchWeather();
+  }
+});
+
 hideWeather();
 let isCelsius = true;
 let currentTemp = null;
@@ -120,6 +127,11 @@ let currentTemp = null;
 async function fetchWeather() {
   
   const country = countryInput.value;
+
+  if (!country) {
+    showError("Please enter a country name");
+    return;
+  }
 
   try {
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${country}&appid=${API_KEY}&units=metric`;
@@ -132,6 +144,7 @@ async function fetchWeather() {
     throw new Error(data.message);
   }
   displayWeather(data);
+  toggleUnitBtn.disabled = false;
   }
   catch (error) {
     showError(error.message);
@@ -144,12 +157,17 @@ function displayWeather (data) {
 
   currentTemp = data.main.temp;
 
+  let countryName = data.name.trim();
 
-  weatherHeading.textContent = `${data.name}`
+  const icon = data.weather[0].icon;
+
+
+  weatherHeading.textContent = `${countryName}'s Weather`;
   weatherParagraph.textContent = `☼Weather: ${data.weather[0].description}`
   weatherHumidity.textContent = `💧Humidity: ${data.main.humidity}%`;
   weatherWind.textContent = `🌬Wind Speed: ${data.wind.speed} m/s`;
   weatherTemperature.textContent = `🌡️Temperature ${Math.round(data.main.temp)}°C`;
+  weatherIcon.src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
 
   weatherContent.classList.remove("hidden");
 }
@@ -180,4 +198,6 @@ function showError (message) {
 
 function hideWeather () {
   weatherContent.classList.add("hidden");
+  toggleUnitBtn.disabled = true;
+
 }
