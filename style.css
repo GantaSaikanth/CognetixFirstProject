@@ -1,0 +1,115 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #74ebd5, #acb6e5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.title {
+  font-size: 25px;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  text-align: center;
+}
+.input {
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+.search-btn {
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  background-color: #74ebd5;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.weather-content {
+  margin-top: 30px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+.hidden {
+  display: none;
+}
+.weather-heading {
+  font-size: 22px;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  color: #74ebd5;
+  margin-bottom: 5px;
+}
+.weather-desc {
+  font-size: 18px;
+  color: #333;
+  font-family: Arial, sans-serif;
+}
+.article-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  max-width: 600px;
+}
+.search-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+.btn-container {
+  margin-top: 20px;
+  margin-left: 10px;
+}
+.toggle-btn {
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  background-color: #acb6e5;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.error-card {
+  margin-top: 20px;
+  background-color: rgba(255, 100, 100, 0.8);
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+  .article-container {
+    padding: 10px;
+  }
+  
+  .input, .search-btn, .toggle-btn {
+    font-size: 14px;
+    padding: 8px;
+  }
+  
+  .weather-heading {
+    font-size: 20px;
+  }
+  
+  .weather-desc {
+    font-size: 16px;
+  }
+}
