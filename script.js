@@ -103,10 +103,7 @@ function showError (message) {
 
 function hideWeather () {
   weatherContent.classList.add("hidden");
-<<<<<<< HEAD
+
   toggleUnitBtn.disabled = true;
 
-}
-=======
-}
->>>>>>> 84b1f802b9a42d5b758592fcec812ad269f024fe
+};
